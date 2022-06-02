@@ -74,10 +74,10 @@
       ],
       "metadata": {
         "id": "dSoaryevtEus",
-        "outputId": "94b5c9ab-bc47-4014-b884-39b727d9d00d",
         "colab": {
           "base_uri": "https://localhost:8080/"
-        }
+        },
+        "outputId": "94b5c9ab-bc47-4014-b884-39b727d9d00d"
       },
       "execution_count": 9,
       "outputs": [
@@ -133,10 +133,10 @@
       ],
       "metadata": {
         "id": "OJsU_RtEvCjj",
-        "outputId": "a2c38698-874c-42fd-d31b-e757437dbb8f",
         "colab": {
           "base_uri": "https://localhost:8080/"
-        }
+        },
+        "outputId": "a2c38698-874c-42fd-d31b-e757437dbb8f"
       },
       "execution_count": 11,
       "outputs": [
