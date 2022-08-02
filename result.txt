@@ -1,0 +1,6 @@
+# conda environments:
+#
+base                     C:\Users\User\anaconda3
+orca                     C:\Users\User\anaconda3\envs\orca
+s1n1                  *  C:\Users\User\anaconda3\envs\s1n1
+
