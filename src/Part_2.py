@@ -48,4 +48,21 @@ Part 2 은 딕셔너리와 리스트가 결합된 입력을 예시로 합니다.
 
 """
 
-pass
+conn = sqlite3.connect(DB_FILENAME)
+
+cur = conn.cursor()
+
+cur.execute('DROP TABLE  if exists Albums_Part2')
+
+cur.execute("""
+CREATE TABLE Albums_Part2(
+    AlbumId INTEGER NOT NULL PRIMARY KEY,
+    Title NVARCHAR(160),
+    ArtistId INTEGER
+)""")
+
+for i in range(1, 11):
+	key = str(i)
+	cur.execute('INSERT INTO Albums_Part2 VALUES (?,?,?)',(key, dictionary_data[key][0], dictionary_data[key][1]))
+
+conn.commit()

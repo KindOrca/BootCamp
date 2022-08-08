@@ -24,18 +24,45 @@ Part 4
 
 """
 
-# import psycopg2
+import psycopg2
 
-# host = '호스트 주소를 입력해주세요'
-# user = '유저 이름을 입력해주세요'
-# password = '비밀번호를 입력해주세요'
-# database = '데이터베이스 이름을 입력해주세요'
+host = 'arjuna.db.elephantsql.com'
+user = 'deezziqj'
+password = 'OPvwQKGzrvV3SKeum1WQQvi0BmsdhhwC'
+database = 'deezziqj'
 
-# connection = psycopg2.connect(
-#     host=host,
-#     user=user,
-#     password=password,
-#     database=database
-# )
+connection = psycopg2.connect(
+    host=host,
+    user=user,
+    password=password,
+    database=database
+)
 
-# 나머지 코드는 titanic.csv 의 데이터를 passenger 테이블로 전달할 수 있도록 자유롭게 작성해주시기 바랍니다.
+cur = connection.cursor()
+
+cur.execute('DROP TABLE if exists passenger')
+
+cur.execute("""
+CREATE TABLE passenger(
+    Id INTEGER NOT NULL PRIMARY KEY,
+    Survived INTEGER,
+    Pclass INTEGER,
+    Name VARCHAR(128),
+    SEX VARCHAR(12),
+    Age FLOAT,
+    Siblings_Spouses_Aboard INTEGER,
+    Parents_Childern_Aboard INTEGER,
+    Fare FLOAT
+)""")
+
+import csv
+ 
+f = open("titanic.csv", "r")
+reader = csv.reader(f)
+lists = list(reader)[1:]
+idx = 0
+for row in lists:
+    row.insert(0, idx)
+    cur.execute("INSERT INTO passenger VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",tuple(row))
+    idx += 1
+connection.commit()

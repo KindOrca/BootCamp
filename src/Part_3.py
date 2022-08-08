@@ -90,5 +90,24 @@ Part 3 은 딕셔너리와 리스트가 결합된 입력을 예시로 합니다.
 
 """
 
+conn = sqlite3.connect(DB_FILENAME)
 
-pass
+cur = conn.cursor()
+
+cur.execute('DROP TABLE if exists Albums_Part3')
+
+cur.execute("""
+CREATE TABLE Albums_Part3 (
+    AlbumId INTEGER NOT NULL PRIMARY KEY,
+    Title NVARCHAR(160),
+    ArtistId INTEGER
+)""")
+
+for list in json_data['DATA']:
+	one = list['AlbumId']
+	two = list['Title']
+	thr = list['ArtistId']
+	tup = (one, two, thr)
+	cur.execute('INSERT INTO Albums_Part3 VALUES (?,?,?)', tup)
+	
+conn.commit()

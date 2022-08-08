@@ -45,4 +45,22 @@ Part 1 은 리스트 입력을 예시로 합니다. 테스트는 아래의 상�
 
 """
 
-pass
+conn = sqlite3.connect(DB_FILENAME)
+
+cur = conn.cursor()
+
+lists = list_data[1:]
+
+cur.execute('DROP TABLE  if exists Albums_Part1')
+
+cur.execute("""
+CREATE TABLE Albums_Part1(
+    AlbumId INTEGER NOT NULL PRIMARY KEY,
+    Title NVARCHAR(160),
+    ArtistId INTEGER
+)""")
+
+sql = 'INSERT INTO Albums_Part1 VALUES (?,?,?)'
+cur.executemany(sql, lists)
+
+conn.commit()
