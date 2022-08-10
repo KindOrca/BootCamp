@@ -34,7 +34,8 @@ def get_page(page_url):
         - page: requests 을 통해 받은 페이지 (requests 에서 사용하는 response
         객체입니다).
     """
-
+    page = requests.get(page_url)
+    soup = BeautifulSoup(page.content, 'html.parser')
 
     return soup, page
 
@@ -72,6 +73,10 @@ def get_avg_stars(reviews):
     ------------------------------------------------
     """
     avg = None
+    temp = 0
+    for i in reviews:
+        temp += i['review_star']
+    avg = temp/(len(reviews))
 
     return avg
 
@@ -96,7 +101,10 @@ def get_movie_code(movie_title):
     """
     search_url = f"{BASE_URL}/search/result.naver?query={movie_title}&section=all&ie=utf8"
     movie_code = None
-
+    soup, page = get_page(search_url)
+    want = soup.select_one('#old_content > ul:nth-child(4) > li:nth-child(1) > dl > dt > a')
+    url = want.attrs['href']
+    movie_code = int(re.findall('code=[0-9]+',url)[0][5:])
     return movie_code
 
 
@@ -122,7 +130,15 @@ def get_reviews(movie_code, page_num=1):
     """
     review_url = f"{BASE_URL}/point/af/list.naver?st=mcode&sword={movie_code}&target=after&page={page_num}"
     review_list = []
-
+    soup, page = get_page(review_url)
+    items = soup.select('.title')
+    for item in items:
+        dic = {}
+        star = int(item.find('em').text)
+        text = item.text.split('\n')[5].rstrip()
+        dic['review_text'] = text
+        dic['review_star'] = star
+        review_list.append(dic)
     return review_list
 
 
@@ -141,9 +157,17 @@ def scrape_by_review_num(movie_title, review_num):
         형태여야 합니다.)
     """
     reviews = []
+    movie_code = get_movie_code(movie_title)
+    idx = 1
+    while len(reviews) < review_num:
+        review_list = get_reviews(movie_code, idx)
+        reviews += review_list
+        idx += 1
+
+    while len(reviews) != review_num:
+        reviews.pop()
 
     return reviews
-
 
 def scrape_by_page_num(movie_title, page_num=10):
     """
@@ -161,5 +185,8 @@ def scrape_by_page_num(movie_title, page_num=10):
         명시된 파이썬 딕셔너리 형태여야 합니다.)
     """
     reviews = []
-
+    movie_code = get_movie_code(movie_title)
+    for i in range(1,page_num + 1):
+        reviews += get_reviews(movie_code, i)
+        
     return reviews

@@ -30,7 +30,17 @@ def store_by_page_num(movie_title, page_num=10, conn=conn):
     리턴:
         - 별도로 없습니다.
     """
-    pass
+    movie_code = Part_1.get_movie_code(movie_title)
+    reviews = []
+    for i in range(1, page_num + 1):
+        reviews += Part_1.get_reviews(movie_code, i)
+    
+    cur = conn.cursor()
+    
+    for item in reviews:
+        tup = (item['review_text'], item['review_star'], movie_title)
+        cur.execute('INSERT INTO Review (review_text,review_star,movie_title) VALUES (?,?,?)',tup)
+
 
 def init_db(conn=conn):
     """
