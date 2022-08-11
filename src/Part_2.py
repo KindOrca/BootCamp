@@ -7,12 +7,15 @@ def connect_api():
     Hint: api 객체는 tweepy.API 로 만들 수 있습니다.
     """
 
-    api_key = 'API 키를 입력해주세요'
-    api_key_secret = 'API 비밀 키를 입력해주세요'
-    access_token = 'Access 토큰을 입력해주세요'
-    access_token_secret = '비밀 access 토큰을 입력해주세요'
+    api_key = '8Vq20QQ0TLBR5QjtZ2PdOvAYl'
+    api_key_secret = '9eGaxGXF67Z6vzoPqDG8U9DrCLvAWmfSGv4WheydpL3W4nENXr'
+    access_token = '1557379749307359232-7xpTsZMzpgatEqFuZeIi5Gx64fQkj8'
+    access_token_secret = 'Qz6ya2Y9TmYISvNvBYUbrDdQW4eVrxbTPKFjOS1aIMFm7'
 
-    api = None
+    auth = tweepy.OAuthHandler(api_key, api_key_secret)
+    auth.set_access_token(access_token, access_token_secret)
+
+    api = tweepy.API(auth)
 
     return api
 
@@ -25,6 +28,6 @@ def get_tweets(api, username):
     Hint: 'tweet_mode' 에 대해서 알아보세요!
     """
 
-    tweets = None
+    tweets = api.user_timeline(username, tweet_mode='extended')
 
     return tweets

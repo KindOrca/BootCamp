@@ -12,14 +12,33 @@ def get_cursor(DB_FILEPATH):
      - connection 인스턴스 : 데이터베이스와 연결된 connection 인스턴스를 리턴합니다.
      - cursor 인스턴스 : 데이터베이스에 sql 쿼리문을 보낼 수 있는 cursor 인스턴스를 러턴합니다.
     """
-    pass
+    conn = sqlite3.Connection(DB_FILEPATH)
+    cur = conn.cursor()
+    return conn, cur
 
 def init_database(connection, cursor):
     """
     데이터베이스를 초기화합니다.
     기존에 데이터가 있다면 지우고, 주어진 스키마에 따라 데이터베이스 테이블을 생성합니다.
     """
-    pass
+    cursor.execute("DROP TABLE if exists user")
+    cursor.execute("DROP TABLE if exists tweet")
+
+    cursor.execute("""
+    CREATE TABLE user (
+        id INTEGER NOT NULL PRIMARY KEY,
+        screen_name VARCHAR
+    )
+    """)
+    cursor.execute("""
+    CREATE TABLE tweet (
+        id INTEGER NOT NULL PRIMARY KEY,
+        full_text VARCHAR,
+        user_id INTEGER,
+        FOREIGN KEY(user_id) REFERENCES user(id)
+    )
+    """)
+    connection.commit()
 
 def add_user(username, connection, cursor):
     """
@@ -33,7 +52,12 @@ def add_user(username, connection, cursor):
         - connection 인스턴스 : 데이터베이스와 연결된 connection 인스턴스 입니다.
         - cursor 인스턴스 : 데이터베이스에 sql 쿼리문을 보낼 수 있는 cursor 인스턴스 입니다.
     """
-    pass
+    cursor.execute(f"SELECT count(*) FROM user WHERE screen_name = '{username}'")
+    num = cursor.fetchone()[0]
+    if num == 0:
+        cursor.execute('INSERT INTO user (screen_name) VALUES (?)',(username,))
+
+    connection.commit()
 
 def add_tweet(username, tweet_text, connection, cursor):
     """
@@ -47,7 +71,13 @@ def add_tweet(username, tweet_text, connection, cursor):
         - connection 인스턴스 : 데이터베이스와 연결된 connection 인스턴스 입니다.
         - cursor 인스턴스 : 데이터베이스에 sql 쿼리문을 보낼 수 있는 cursor 인스턴스 입니다.
     """
-    pass
+
+    add_user(username, connection, cursor)
+    cursor.execute(f'SELECT id FROM user WHERE screen_name = "{username}"')
+    user_id = cursor.fetchone()[0]
+    cursor.execute(f'INSERT INTO tweet (full_text, user_id) VALUES (?,?)',(tweet_text, user_id))
+
+    connection.commit()
     
 
 
@@ -61,4 +91,7 @@ def delete_user(user_id, connection, cursor):
         - connection 인스턴스 : 데이터베이스와 연결된 connection 인스턴스 입니다.
         - cursor 인스턴스 : 데이터베이스에 sql 쿼리문을 보낼 수 있는 cursor 인스턴스 입니다.
     """
-    pass
+
+    cursor.execute(f'DELETE FROM user WHERE id = {user_id}')
+    cursor.execute(f'DELETE FROM tweet WHERE user_id = {user_id}')
+    connection.commit()

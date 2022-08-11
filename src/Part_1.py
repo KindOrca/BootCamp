@@ -1,7 +1,8 @@
+from tkinter import W
 import requests
 import json
 
-API_KEY = 'API 키를 입력해주세요'
+API_KEY = '720a2b8867ef329b5153f740f07fe76e'
 
 
 def get_city_data(city_name):
@@ -17,8 +18,9 @@ def get_city_data(city_name):
         리턴합니다.
     """
 
-    current_weather = None
-    
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}'
+    response = requests.get(url)
+    current_weather = json.loads(response.text)
     return current_weather
 
 
@@ -35,8 +37,7 @@ def get_weather_description(json_data):
         리턴합니다.
     """
 
-    weather_description = None
-
+    weather_description = json_data['weather'][0]['description']
     return weather_description
 
 
@@ -51,6 +52,5 @@ def get_minimum_temp(json_data):
         - 온도 정보: 주어진 JSON 데이터에서 온도 정보를 리턴합니다.
     """
 
-    temp_min = None
-
+    temp_min = round(json_data['main']['temp_min'] - 273.15, 2)
     return temp_min
