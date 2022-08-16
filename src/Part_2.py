@@ -11,6 +11,7 @@
     파이썬 Exception 클래스 중에서 알맞은 클래스를 입력해 채워주셔야 합니다.
 """
 
+import string
 from unittest import TestCase
 
 """
@@ -39,7 +40,7 @@ class PythonClasses(TestCase):
         # NOTE: .__name__ 속성은 클래스를 문자열로 만듭니다.
         """
         new_car = self.Car()
-        assert "빈칸을 채워주세요" == new_car.__class__.__name__
+        assert 'Car' == new_car.__class__.__name__
 
     def test_about_class_docstrings(self):
         """
@@ -51,7 +52,7 @@ class PythonClasses(TestCase):
         예를 들어 pandas 라이브러리에서 생성하는 `Dataframe` 도 이러한 속성이
         있을까요?
         """
-        assert self.Car.__doc__ == "빈칸을 채워주세요" 
+        assert self.Car.__doc__ == "There are many different cars" 
 
     # ------------------------------------------------------------------
 
@@ -72,7 +73,7 @@ class PythonClasses(TestCase):
         물론 규칙처럼 정해지지는 않았지만 하나의 암묵적인 convention 입니다.
         """
         new_car = self.Car2()
-        assert "빈칸을 채워주세요" == new_car._name
+        assert 'BatCar' == new_car._name
 
     def test_about_private_attributes(self):
         """
@@ -82,7 +83,7 @@ class PythonClasses(TestCase):
         """
         new_car = self.Car2()
         new_car.set_name("SuperCar")
-        assert "빈칸을 채워주세요" == new_car._name
+        assert "SuperCar" == new_car._name
 
     def test_about_getattr_and_dict(self):
         """
@@ -102,8 +103,8 @@ class PythonClasses(TestCase):
         new_car = self.Car2()
         new_car.set_name("SuperCar")
 
-        assert "빈칸을 채워주세요" == getattr(new_car, "_name")
-        assert "빈칸을 채워주세요" == new_car.__dict__["_name"]
+        assert "SuperCar" == getattr(new_car, "_name")
+        assert "SuperCar" == new_car.__dict__["_name"]
 
     # ------------------------------------------------------------------
 
@@ -140,8 +141,8 @@ class PythonClasses(TestCase):
         new_car = self.Car3()
         new_car.set_name("SuperCar")
 
-        assert getattr(new_car, "빈칸을 채워주세요") == "SuperCar"
-        assert "빈칸을 채워주세요" == "SuperCar"
+        assert getattr(new_car, "_name") == "SuperCar"
+        assert new_car.get_name() == "SuperCar"
 
     # ------------------------------------------------------------------
 
@@ -180,7 +181,7 @@ class PythonClasses(TestCase):
         new_car.name = "SuperCar"
 
         # new_car 의 이름을 어떻게 받아올 수 있을까요? `_name` 은 아닙니다!
-        assert "빈칸을 채워주세요" == "SuperCar"
+        assert new_car.name == "SuperCar"
 
     # ------------------------------------------------------------------
 
@@ -205,7 +206,7 @@ class PythonClasses(TestCase):
         new_car = self.Car5("SuperCar")
 
         # 이제는 익숙해지셨겠지만 `_name` 을 사용하지 않습니다!
-        assert "빈칸을 채워주세요" == "SuperCar"
+        assert new_car.name == "SuperCar"
 
     def test_about_init_args(self):
         """
@@ -221,7 +222,7 @@ class PythonClasses(TestCase):
 
         아래 코드에서 `self.Car5()` 를 실행하면 어떤 에러가 발생할까요?
         """
-        with self.assertRaises("예외 클래스를 입력해주세요"):
+        with self.assertRaises(TypeError):
             self.Car5()
 
     def test_about_instance_variables(self):
@@ -237,7 +238,7 @@ class PythonClasses(TestCase):
         old_car = self.Car5("SuperCar")
         new_car = self.Car5("RobinCar")
 
-        assert "빈칸을 채워주세요" is (old_car.name == new_car.name)
+        assert False is (old_car.name == new_car.name)
 
     # ------------------------------------------------------------------
 
@@ -249,16 +250,10 @@ class PythonClasses(TestCase):
             return self
 
         def __str__(self):
-            #
-            # 아래 테스트가 통과하도록 코드를 작성해주세요!
-            #
-            pass
+            return f"This car is {self._name}"
 
         def __repr__(self):
-            #
-            # 아래 테스트가 통과하도록 코드를 작성해주세요!
-            #
-            pass
+            return f"<Car '{self._name}'>"
 
     def test_about_self_reference(self):
         """
@@ -270,7 +265,7 @@ class PythonClasses(TestCase):
         """
         new_car = self.Car6("SuperCar")
 
-        assert "빈칸을 채워주세요" == new_car.get_self() # string 이 아닙니다!
+        assert new_car == new_car.get_self() # string 이 아닙니다!
 
     def test_about_str_method(self):
         """
@@ -294,6 +289,9 @@ class PythonClasses(TestCase):
 
         이 특별한 함수는 언제 사용이 될까요?
         또한 `__str__` 과 `__repr__` 의 차이는 뭔가요?
+        __str__의 목적은 문자열화를 하여 서로 다른 객체 간의 정보를 전달
+        하는 데 사용하는 것이고 
+        __repr__은 인간이 이해할 수 있는 표현으로 나타내기 위한 것이다.
         """
         batcar = self.Car6("BatCar")
         supercar = self.Car6("SuperCar")
@@ -311,11 +309,11 @@ class PythonClasses(TestCase):
         """
         nums=[1, 2, 3]
 
-        assert "빈칸을 채워주세요" == str(nums)
-        assert "빈칸을 채워주세요" == repr(nums)
+        assert "[1, 2, 3]" == str(nums)
+        assert "[1, 2, 3]" == repr(nums)
 
-        assert "빈칸을 채워주세요" == str("STRING")
-        assert "빈칸을 채워주세요" == repr("STRING")
+        assert "STRING" == str("STRING")
+        assert "'STRING'" == repr("STRING")
 
 
 """
@@ -334,14 +332,14 @@ class PythonClassAttributes(TestCase):
         파이썬에서 object 는 어떤 클래스인가요?
         """
         new_car = self.Car()
-        assert "빈칸을 채워주세요" is isinstance(new_car, object)
+        assert True is isinstance(new_car, object)
 
     def test_about_class_and_types(self):
         """
         `__class__` 는 파이썬에서 특정 객체의 클래스를 파악하기 위해 사용이
         됩니다.
         """
-        assert "빈칸을 채워주세요" is (self.Car.__class__ == type)
+        assert True is (self.Car.__class__ == type)
 
     def test_about_class_and_objects(self):
         """
@@ -349,7 +347,7 @@ class PythonClassAttributes(TestCase):
 
         파이썬은 클래스에서 다른 클래스가 파생된 경우가 있을까요?
         """
-        assert "빈칸을 채워주세요" is (issubclass(self.Car, object))
+        assert True is (issubclass(self.Car, object))
 
     def test_about_object_methods(self):
         """
@@ -361,22 +359,22 @@ class PythonClassAttributes(TestCase):
         그냥 실행할 때에는 어떤 결과가 보이나요?
         """
         new_car=self.Car()
-        assert "빈칸을 채워주세요" == len(dir(new_car))
+        assert 26 == len(dir(new_car))
 
     def test_about_class_methods(self):
-        assert "빈칸을 채워주세요" == len(dir(self.Car))
+        assert 26 == len(dir(self.Car))
 
     def test_about_individual_object_attributes(self):
         new_car=self.Car()
         new_car.wheels=4
 
-        assert "빈칸을 채워주세요" == new_car.wheels
+        assert 4 == new_car.wheels
 
     def test_about_individual_object_functions_1(self):
         new_car=self.Car()
         new_car.drive=lambda: 'driving car'
 
-        assert "빈칸을 채워주세요" == new_car.drive()
+        assert 'driving car' == new_car.drive()
 
     def test_about_individual_object_functions_2(self):
         old_car = self.Car()
@@ -386,7 +384,7 @@ class PythonClassAttributes(TestCase):
             return 'driving car'
         old_car.drive = drive
 
-        with self.assertRaises("예외 클래스를 입력해주세요"):
+        with self.assertRaises(AttributeError):
             new_car.drive()
 
 
@@ -433,14 +431,14 @@ class PythonInheritance(TestCase):
         이러한 관계가 있기 때문에 해당 함수로 클래스들 간에 관계를 파악할 수
         있습니다.
         """
-        assert "빈칸을 채워주세요" is (issubclass(self.Truck, self.Car))
+        assert True is (issubclass(self.Truck, self.Car))
 
     def test_about_python3_object_class(self):
-        assert "빈칸을 채워주세요" is (issubclass(self.Truck, object))
+        assert True is (issubclass(self.Truck, object))
 
     def test_about_behavior_inheritance(self):
         new_truck = self.Truck("Optimoose")
-        assert "빈칸을 채워주세요" == new_truck.name
+        assert "Optimoose" == new_truck.name
 
     def test_about_subclass_new_behaviors(self):
         """
@@ -449,10 +447,10 @@ class PythonInheritance(TestCase):
         어떤 오류가 발생하는지 확인하고 해당 예외 클래스를 적어주세요!
         """
         new_truck = self.Truck("Optimoose")
-        assert "빈칸을 채워주세요" == new_truck.drive()
+        assert "vroom" == new_truck.drive()
 
         new_car = self.Car("BatCar")
-        with self.assertRaises("예외 클래스를 입력해주세요"):
+        with self.assertRaises(AttributeError):
             new_car.drive()
 
     def test_about_subclass_behavior_modification(self):
@@ -463,10 +461,10 @@ class PythonInheritance(TestCase):
         어떤 결과가 있을지 직접 확인해보시고 테스트를 통과하세요!
         """
         new_truck = self.Truck("Optimoose")
-        assert "빈칸을 채워주세요" == new_truck.honk()
+        assert "beep beep" == new_truck.honk()
 
         new_car = self.Car("BatCar")
-        assert "빈칸을 채워주세요" == new_car.honk()
+        assert "beep" == new_car.honk()
 
     # ------------------------------------------------------------------
 
@@ -482,7 +480,7 @@ class PythonInheritance(TestCase):
         subclass 에서 해당 메소드를 덮어 썼더라도 불러오는 방법이 있습니다.
         """
         new_racecar = self.Racecar("F1")
-        assert "빈칸을 채워주세요" == new_racecar.honk()
+        assert "beep, BEEP!" == new_racecar.honk()
 
     # ------------------------------------------------------------------
 
@@ -492,7 +490,7 @@ class PythonInheritance(TestCase):
 
     def test_super_works_across_methods(self):
         new_loudcar = self.LoudCar("TooLoud")
-        assert "빈칸을 채워주세요" == new_loudcar.honk()
+        assert "beep, BEEP BEEP!" == new_loudcar.honk()
 
     # ---------------------------------------------------------
 
@@ -519,7 +517,7 @@ class PythonInheritance(TestCase):
         적어주세요!
         """
         new_coolcar = self.CoolCar("Ice Car")
-        with self.assertRaises("예외 클래스를 입력해주세요"):
+        with self.assertRaises(AttributeError):
             name = new_coolcar.name
 
     def test_about_explicit_init_call(self):
@@ -529,7 +527,7 @@ class PythonInheritance(TestCase):
         superclass 의 생성자 함수를 사용하면 문제가 사라지지 않습니다.
         """
         new_coldwheels = self.Coldwheels("Icecube")
-        assert "빈칸을 채워주세요" == new_coldwheels.name
+        assert "Icecube" == new_coldwheels.name
 
 """
 4. 파이썬 예외
@@ -559,9 +557,9 @@ class PythonExceptions(TestCase):
         직접 파이썬으로 확인해 보시면서 테스트를 통과해주세요
         """
         mro = self.CustomError.mro()
-        assert "빈칸을 채워주세요" == mro[1].__name__
-        assert "빈칸을 채워주세요" == mro[2].__name__
-        assert "빈칸을 채워주세요" == mro[3].__name__
+        assert "RuntimeError" == mro[1].__name__
+        assert "Exception" == mro[2].__name__
+        assert "BaseException" == mro[3].__name__
 
     def test_about_try_clause(self):
         """
@@ -585,12 +583,12 @@ class PythonExceptions(TestCase):
 
             e2=e
 
-        assert "빈칸을 채워주세요" == result
+        assert "exception handled" == result
 
-        assert "빈칸을 채워주세요" is isinstance(e2, Exception)
-        assert "빈칸을 채워주세요" is isinstance(e2, RuntimeError)
+        assert True is isinstance(e2, Exception)
+        assert False is isinstance(e2, RuntimeError)
 
-        assert "빈칸을 채워주세요" is issubclass(RuntimeError, Exception)
+        assert True is issubclass(RuntimeError, Exception)
 
     def test_about_raising_specific_error(self):
         """
@@ -608,8 +606,8 @@ class PythonExceptions(TestCase):
             result='exception handling'
             msg=e.args[0]
 
-        assert "빈칸을 채워주세요" == result
-        assert "빈칸을 채워주세요" == msg
+        assert "exception handling" == result
+        assert "Custom Message" == msg
 
     def test_about_else_clause(self):
         """
@@ -628,7 +626,7 @@ class PythonExceptions(TestCase):
         else:
             result='else clause'
 
-        assert "빈칸을 채워주세요" == result
+        assert "else clause" == result
 
     def test_about_finally_clause(self):
         """
@@ -647,4 +645,4 @@ class PythonExceptions(TestCase):
         finally:
             result='always run'
 
-        assert "빈칸을 채워주세요" == result
+        assert "always run" == result
