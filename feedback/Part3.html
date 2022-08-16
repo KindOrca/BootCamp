@@ -13137,7 +13137,7 @@ span.nbgrader-label {
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4>Part3 (Score: 0.0 / 3.0)</h4>
+        <h4>Part3 (Score: 3.0 / 3.0)</h4>
         <div id="toc">
           <ol>
           
@@ -13158,24 +13158,9 @@ span.nbgrader-label {
           
             
             
-            <li><a href="#comment-3-1">Comment</a></li>
-            
           
             
-            <li><a href="#3-1_test">Test cell</a> (Score: 0.0 / 1.0)</li>
-            
-            
-          
-            
-            
-          
-            
-            
-            <li><a href="#comment-3-2">Comment</a></li>
-            
-          
-            
-            <li><a href="#3-2_test">Test cell</a> (Score: 0.0 / 1.0)</li>
+            <li><a href="#3-1_test">Test cell</a> (Score: 1.0 / 1.0)</li>
             
             
           
@@ -13184,14 +13169,23 @@ span.nbgrader-label {
           
             
             
-            <li><a href="#comment-3-3">Comment</a></li>
+          
+            
+            <li><a href="#3-2_test">Test cell</a> (Score: 1.0 / 1.0)</li>
+            
             
           
             
             
           
             
-            <li><a href="#3-3_test">Test cell</a> (Score: 0.0 / 1.0)</li>
+            
+          
+            
+            
+          
+            
+            <li><a href="#3-3_test">Test cell</a> (Score: 1.0 / 1.0)</li>
             
             
           
@@ -13293,7 +13287,16 @@ span.nbgrader-label {
 
     <span class="n">tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_real</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span>
     <span class="c1"># YOUR CODE HERE</span>
-    
+    <span class="n">tp</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_real</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">tp</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_real</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">tn</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">y_real</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)):</span>
+            <span class="n">fp</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">y_real</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
+            <span class="n">fn</span><span class="o">+=</span><span class="mi">1</span>
     
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
@@ -13302,12 +13305,7 @@ span.nbgrader-label {
 
       </div>
     </div>
-    <div class="panel-footer">
-  <div>
-    <b>Comments:</b> <p>No response.</p>
-
-  </div>
-</div>
+    
   </div>
 </div>
 
@@ -13317,7 +13315,7 @@ span.nbgrader-label {
 <div class="prompt input_prompt">In&nbsp;[2]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="3-1_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>3-1_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 1.0 <a href="#top">(Top)</a>
+      Score: 1.0 / 1.0 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -13356,30 +13354,8 @@ span.nbgrader-label {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(TP, TN, FP, FN) = (8, -1, -1, -1)
+<pre>(TP, TN, FP, FN) = (8, 5, 4, 3)
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-2-dc92012cc76b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     11</span>     y_real <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>random<span class="ansi-blue-fg">.</span>normal<span class="ansi-blue-fg">(</span>size<span class="ansi-blue-fg">=</span>length<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>int<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     12</span>     _tn<span class="ansi-blue-fg">,</span> _fp<span class="ansi-blue-fg">,</span> _fn<span class="ansi-blue-fg">,</span> _tp <span class="ansi-blue-fg">=</span> sol_confusion_matrix<span class="ansi-blue-fg">(</span>y_real<span class="ansi-blue-fg">,</span> y_pred<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>ravel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 13</span><span class="ansi-red-fg">     assert (_tp, _tn, _fp, _fn) == confusion_matrix(y_pred, y_real), AssertionError(
-</span><span class="ansi-green-intense-fg ansi-bold">     14</span>         <span class="ansi-blue-fg">f&#34;TC Failed:\n\tpred={y_pred}\n\treal={y_real}&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">     15</span>     )
-
-<span class="ansi-red-fg">AssertionError</span>: TC Failed:
-	pred=[1 0 1 1 0 0 1 1 0 1]
-	real=[0 0 1 0 0 0 0 1 0 0]</pre>
 </div>
 </div>
 
@@ -13413,8 +13389,10 @@ span.nbgrader-label {
 
     <span class="n">tp</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_real</span><span class="p">)</span>
     <span class="c1"># YOUR CODE HERE</span>
-    
-    
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">tn</span><span class="o">+</span><span class="n">fp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fp</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">tp</span><span class="o">/</span><span class="p">(</span><span class="n">tp</span><span class="o">+</span><span class="n">fn</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span> <span class="p">((</span><span class="n">precision</span><span class="o">*</span><span class="n">recall</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span><span class="o">+</span><span class="n">recall</span><span class="p">))</span> 
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span>
@@ -13422,12 +13400,7 @@ span.nbgrader-label {
 
       </div>
     </div>
-    <div class="panel-footer">
-  <div>
-    <b>Comments:</b> <p>No response.</p>
-
-  </div>
-</div>
+    
   </div>
 </div>
 
@@ -13437,7 +13410,7 @@ span.nbgrader-label {
 <div class="prompt input_prompt">In&nbsp;[4]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="3-2_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>3-2_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 1.0 <a href="#top">(Top)</a>
+      Score: 1.0 / 1.0 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -13486,33 +13459,11 @@ span.nbgrader-label {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy: 0
-Precision: 0
-Recall: 0
-F1: 0
+<pre>Accuracy: 0.65
+Precision: 0.6666666666666666
+Recall: 0.7272727272727273
+F1: 0.6956521739130435
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-4-86966f12466f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     16</span>     accuracy <span class="ansi-blue-fg">=</span> sum<span class="ansi-blue-fg">(</span>y_pred <span class="ansi-blue-fg">==</span> y_real<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">*</span> <span class="ansi-cyan-fg">1.0</span> <span class="ansi-blue-fg">/</span> len<span class="ansi-blue-fg">(</span>y_real<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span>     precision<span class="ansi-blue-fg">,</span> recall<span class="ansi-blue-fg">,</span> f1<span class="ansi-blue-fg">,</span> _ <span class="ansi-blue-fg">=</span> prfs<span class="ansi-blue-fg">(</span>y_real<span class="ansi-blue-fg">,</span> y_pred<span class="ansi-blue-fg">,</span> average<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;binary&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 18</span><span class="ansi-red-fg">     assert all(
-</span><span class="ansi-green-intense-fg ansi-bold">     19</span>         map(
-<span class="ansi-green-intense-fg ansi-bold">     20</span>             <span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> abs<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">-</span> x<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&lt;</span> <span class="ansi-cyan-fg">1e-6</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-red-fg">AssertionError</span>: TC Failed:
-	pred=[1 0 1 1 0 0 1 1 0 1]
-	real=[1 0 1 0 0 0 0 1 0 0]</pre>
 </div>
 </div>
 
@@ -13545,8 +13496,12 @@ F1: 0
     <span class="n">FPR</span> <span class="o">=</span> <span class="mf">0.0</span>
 
     <span class="c1"># YOUR CODE HERE</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_pred_proba</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     
+    <span class="n">tp</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_real</span><span class="p">)</span>
     
+    <span class="n">FPR</span> <span class="o">=</span> <span class="p">(</span><span class="n">fp</span> <span class="o">/</span> <span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">))</span>
+    <span class="n">TPR</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">))</span>
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="n">TPR</span><span class="p">,</span> <span class="n">FPR</span>
@@ -13554,12 +13509,7 @@ F1: 0
 
       </div>
     </div>
-    <div class="panel-footer">
-  <div>
-    <b>Comments:</b> <p>No response.</p>
-
-  </div>
-</div>
+    
   </div>
 </div>
 
@@ -13581,7 +13531,7 @@ F1: 0
 <div class="prompt input_prompt">In&nbsp;[6]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="3-3_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>3-3_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 1.0 <a href="#top">(Top)</a>
+      Score: 1.0 / 1.0 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -13649,46 +13599,26 @@ F1: 0
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Threshold=1.986, TPR=0.000, FPR=0.000 
 Threshold=0.986, TPR=0.000, FPR=0.000 
-Threshold=0.980, TPR=0.000, FPR=0.000 
-Threshold=0.893, TPR=0.000, FPR=0.000 
-Threshold=0.844, TPR=0.000, FPR=0.000 
-Threshold=0.699, TPR=0.000, FPR=0.000 
-Threshold=0.666, TPR=0.000, FPR=0.000 
-Threshold=0.649, TPR=0.000, FPR=0.000 
-Threshold=0.626, TPR=0.000, FPR=0.000 
-Threshold=0.622, TPR=0.000, FPR=0.000 
-Threshold=0.616, TPR=0.000, FPR=0.000 
-Threshold=0.589, TPR=0.000, FPR=0.000 
-Threshold=0.536, TPR=0.000, FPR=0.000 
-Threshold=0.529, TPR=0.000, FPR=0.000 
-Threshold=0.529, TPR=0.000, FPR=0.000 
-Threshold=0.482, TPR=0.000, FPR=0.000 
-Threshold=0.406, TPR=0.000, FPR=0.000 
-Threshold=0.345, TPR=0.000, FPR=0.000 
-Threshold=0.331, TPR=0.000, FPR=0.000 
-Threshold=0.094, TPR=0.000, FPR=0.000 
-Threshold=0.033, TPR=0.000, FPR=0.000 
+Threshold=0.980, TPR=0.091, FPR=0.000 
+Threshold=0.893, TPR=0.182, FPR=0.000 
+Threshold=0.844, TPR=0.273, FPR=0.000 
+Threshold=0.699, TPR=0.364, FPR=0.000 
+Threshold=0.666, TPR=0.364, FPR=0.111 
+Threshold=0.649, TPR=0.364, FPR=0.222 
+Threshold=0.626, TPR=0.455, FPR=0.222 
+Threshold=0.622, TPR=0.545, FPR=0.222 
+Threshold=0.616, TPR=0.636, FPR=0.222 
+Threshold=0.589, TPR=0.727, FPR=0.222 
+Threshold=0.536, TPR=0.727, FPR=0.333 
+Threshold=0.529, TPR=0.727, FPR=0.444 
+Threshold=0.529, TPR=0.727, FPR=0.556 
+Threshold=0.482, TPR=0.818, FPR=0.556 
+Threshold=0.406, TPR=0.818, FPR=0.667 
+Threshold=0.345, TPR=0.818, FPR=0.778 
+Threshold=0.331, TPR=0.909, FPR=0.778 
+Threshold=0.094, TPR=1.000, FPR=0.778 
+Threshold=0.033, TPR=1.000, FPR=0.889 
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-6-f1cabbe08b90&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     40</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">     41</span> <span class="ansi-green-fg">for</span> th<span class="ansi-blue-fg">,</span> tpr<span class="ansi-blue-fg">,</span> fpr <span class="ansi-green-fg">in</span> zip<span class="ansi-blue-fg">(</span>thresholds<span class="ansi-blue-fg">,</span> tprs<span class="ansi-blue-fg">,</span> fprs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 42</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">assert</span> abs<span class="ansi-blue-fg">(</span>tpr <span class="ansi-blue-fg">-</span> <span class="ansi-blue-fg">(</span>y_pred_proba<span class="ansi-blue-fg">&gt;</span>th<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>y_real <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>mean<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&lt;</span> <span class="ansi-cyan-fg">1e-6</span>
-<span class="ansi-green-intense-fg ansi-bold">     43</span>     <span class="ansi-green-fg">assert</span> abs<span class="ansi-blue-fg">(</span>fpr <span class="ansi-blue-fg">-</span> <span class="ansi-blue-fg">(</span>y_pred_proba<span class="ansi-blue-fg">&gt;</span>th<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>y_real <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>mean<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&lt;</span> <span class="ansi-cyan-fg">1e-6</span>
-<span class="ansi-green-intense-fg ansi-bold">     44</span> <span class="ansi-red-fg">### END HIDDEN TESTS</span>
-
-<span class="ansi-red-fg">AssertionError</span>: </pre>
 </div>
 </div>
 
@@ -13700,7 +13630,7 @@ Threshold=0.033, TPR=0.000, FPR=0.000
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>

@@ -13137,7 +13137,7 @@ span.nbgrader-label {
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4>Part1_2 (Score: 1.0 / 7.0)</h4>
+        <h4>Part1_2 (Score: 5.0 / 7.0)</h4>
         <div id="toc">
           <ol>
           
@@ -13203,61 +13203,7 @@ span.nbgrader-label {
             
           
             
-            <li><a href="#1-3_test">Test cell</a> (Score: 0.0 / 1.0)</li>
-            
-            
-          
-            
-            
-          
-            
-            
-          
-            
-            
-            <li><a href="#comment-1-4">Comment</a></li>
-            
-          
-            
-            
-          
-            
-            <li><a href="#1-4_test">Test cell</a> (Score: 0.0 / 0.5)</li>
-            
-            
-          
-            
-            
-          
-            
-            
-          
-            
-            
-            <li><a href="#comment-2-1">Comment</a></li>
-            
-          
-            
-            
-          
-            
-            <li><a href="#2-1_test">Test cell</a> (Score: 0.0 / 1.0)</li>
-            
-            
-          
-            
-            
-          
-            
-            
-            <li><a href="#comment-2-2">Comment</a></li>
-            
-          
-            
-            
-          
-            
-            <li><a href="#2-2_test">Test cell</a> (Score: 0.0 / 0.5)</li>
+            <li><a href="#1-3_test">Test cell</a> (Score: 1.0 / 1.0)</li>
             
             
           
@@ -13271,7 +13217,55 @@ span.nbgrader-label {
             
           
             
-            <li><a href="#2-3_test">Test cell</a> (Score: 0.0 / 1.0)</li>
+            
+          
+            
+            <li><a href="#1-4_test">Test cell</a> (Score: 0.5 / 0.5)</li>
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            <li><a href="#2-1_test">Test cell</a> (Score: 1.0 / 1.0)</li>
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            <li><a href="#2-2_test">Test cell</a> (Score: 0.5 / 0.5)</li>
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            <li><a href="#2-3_test">Test cell</a> (Score: 1.0 / 1.0)</li>
             
             
           
@@ -13769,6 +13763,9 @@ Name: shot_made_flag, dtype: int64
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">])</span>
     <span class="n">train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2014</span><span class="p">]</span>
     <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="n">train</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">test</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;game_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span>
@@ -13847,8 +13844,24 @@ Name: shot_made_flag, dtype: int64
     <span class="n">df_tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="c1"># YOUR CODE HERE</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Homecourt_Advantage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;htm&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;LAL&#39;</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;htm&#39;</span><span class="p">]]</span>
+    <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Homecourt_Advantage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;LAL&#39;</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;htm&#39;</span><span class="p">]]</span>
 
+    <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Opponent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;htm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;vtm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Homecourt_Advantage&#39;</span><span class="p">]]</span>
+
+    <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Seconds_remaining_in_the_period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;minutes_remaining&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;seconds_remaining&#39;</span><span class="p">]</span>
+
+    <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Seconds_remaining_in_the_game&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">720</span> <span class="o">+</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Seconds_remaining_in_the_period&#39;</span><span class="p">]</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;shot_made_flag&#39;</span><span class="p">]</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+    <span class="n">temp</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">temp</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">df_tmp</span><span class="p">[</span><span class="s1">&#39;Made_previous_shot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="n">df_tmp</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;htm&#39;</span><span class="p">,</span><span class="s1">&#39;period&#39;</span><span class="p">,</span><span class="s1">&#39;minutes_remaining&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;seconds_remaining&#39;</span><span class="p">,</span><span class="s1">&#39;Made_previous_shot&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;player_name&#39;</span><span class="p">,</span><span class="s1">&#39;game_id&#39;</span><span class="p">,</span><span class="s1">&#39;game_event_id&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;season_type&#39;</span><span class="p">],</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="n">df_tmp</span>
@@ -13873,58 +13886,13 @@ Name: shot_made_flag, dtype: int64
   </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-12-34673139b9ba&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>train_processed <span class="ansi-blue-fg">=</span> feature_engineering<span class="ansi-blue-fg">(</span>train<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> test_processed <span class="ansi-blue-fg">=</span> feature_engineering<span class="ansi-blue-fg">(</span>test<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-11-5c3dec3f6211&gt;</span> in <span class="ansi-cyan-fg">feature_engineering</span><span class="ansi-blue-fg">(df)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     <span class="ansi-red-fg"># YOUR CODE HERE</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;Homecourt_Advantage&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span> <span class="ansi-green-fg">if</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;htm&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;LAL&#39;</span> <span class="ansi-green-fg">else</span> <span class="ansi-cyan-fg">0</span> <span class="ansi-green-fg">for</span> x <span class="ansi-green-fg">in</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;htm&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> 
-<span class="ansi-green-intense-fg ansi-bold">      7</span>     <span class="ansi-red-fg"># YOUR CODE ENDS HERE</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-11-5c3dec3f6211&gt;</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     <span class="ansi-red-fg"># YOUR CODE HERE</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;Homecourt_Advantage&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span> <span class="ansi-green-fg">if</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;htm&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;LAL&#39;</span> <span class="ansi-green-fg">else</span> <span class="ansi-cyan-fg">0</span> <span class="ansi-green-fg">for</span> x <span class="ansi-green-fg">in</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;htm&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> 
-<span class="ansi-green-intense-fg ansi-bold">      7</span>     <span class="ansi-red-fg"># YOUR CODE ENDS HERE</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/lib/python3.8/site-packages/pandas/core/generic.py</span> in <span class="ansi-cyan-fg">__nonzero__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1525</span>     <span class="ansi-blue-fg">@</span>final
-<span class="ansi-green-intense-fg ansi-bold">   1526</span>     <span class="ansi-green-fg">def</span> __nonzero__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1527</span><span class="ansi-red-fg">         raise ValueError(
-</span><span class="ansi-green-intense-fg ansi-bold">   1528</span>             <span class="ansi-blue-fg">f&#34;The truth value of a {type(self).__name__} is ambiguous. &#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">   1529</span>             <span class="ansi-blue-fg">&#34;Use a.empty, a.bool(), a.item(), a.any() or a.all().&#34;</span>
-
-<span class="ansi-red-fg">ValueError</span>: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[13]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="1-3_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>1-3_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 1.0 <a href="#top">(Top)</a>
+      Score: 1.0 / 1.0 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -13939,33 +13907,6 @@ Name: shot_made_flag, dtype: int64
     </div>
     
   </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-13-741f91dd75de&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>train_processed<span class="ansi-blue-fg">.</span>head<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">assert</span> len<span class="ansi-blue-fg">(</span>set<span class="ansi-blue-fg">(</span>train_processed<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-</span> set<span class="ansi-blue-fg">(</span>train<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;=</span> <span class="ansi-cyan-fg">2</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">assert</span> len<span class="ansi-blue-fg">(</span>set<span class="ansi-blue-fg">(</span>test_processed<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-</span> set<span class="ansi-blue-fg">(</span>test<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;=</span> <span class="ansi-cyan-fg">2</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-red-fg">### END HIDDEN TESTS</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;train_processed&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
 </div>
 
 </div>
@@ -13986,18 +13927,142 @@ Name: shot_made_flag, dtype: int64
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-14-3602bdcd46c3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>test_processed<span class="ansi-blue-fg">.</span>head<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;test_processed&#39; is not defined</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>action_type</th>
+      <th>shot_type</th>
+      <th>shot_zone_basic</th>
+      <th>shot_zone_area</th>
+      <th>shot_zone_range</th>
+      <th>shot_distance</th>
+      <th>loc_x</th>
+      <th>loc_y</th>
+      <th>shot_made_flag</th>
+      <th>game_date</th>
+      <th>vtm</th>
+      <th>Homecourt_Advantage</th>
+      <th>Opponent</th>
+      <th>Seconds_remaining_in_the_period</th>
+      <th>Seconds_remaining_in_the_game</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28871</th>
+      <td>Jump Shot</td>
+      <td>2PT Field Goal</td>
+      <td>Mid-Range</td>
+      <td>Center(C)</td>
+      <td>16-24 ft.</td>
+      <td>20</td>
+      <td>-54</td>
+      <td>201</td>
+      <td>0</td>
+      <td>2014-10-28</td>
+      <td>HOU</td>
+      <td>1</td>
+      <td>LAL</td>
+      <td>373</td>
+      <td>1093</td>
+    </tr>
+    <tr>
+      <th>28872</th>
+      <td>Jump Shot</td>
+      <td>2PT Field Goal</td>
+      <td>In The Paint (Non-RA)</td>
+      <td>Center(C)</td>
+      <td>Less Than 8 ft.</td>
+      <td>6</td>
+      <td>-16</td>
+      <td>63</td>
+      <td>1</td>
+      <td>2014-10-28</td>
+      <td>HOU</td>
+      <td>1</td>
+      <td>LAL</td>
+      <td>285</td>
+      <td>1005</td>
+    </tr>
+    <tr>
+      <th>28873</th>
+      <td>Turnaround Jump Shot</td>
+      <td>2PT Field Goal</td>
+      <td>Mid-Range</td>
+      <td>Right Side(R)</td>
+      <td>16-24 ft.</td>
+      <td>18</td>
+      <td>166</td>
+      <td>78</td>
+      <td>0</td>
+      <td>2014-10-28</td>
+      <td>HOU</td>
+      <td>1</td>
+      <td>LAL</td>
+      <td>352</td>
+      <td>2512</td>
+    </tr>
+    <tr>
+      <th>28874</th>
+      <td>Jump Shot</td>
+      <td>3PT Field Goal</td>
+      <td>Above the Break 3</td>
+      <td>Left Side Center(LC)</td>
+      <td>24+ ft.</td>
+      <td>27</td>
+      <td>-138</td>
+      <td>241</td>
+      <td>0</td>
+      <td>2014-10-28</td>
+      <td>HOU</td>
+      <td>1</td>
+      <td>LAL</td>
+      <td>576</td>
+      <td>3456</td>
+    </tr>
+    <tr>
+      <th>28875</th>
+      <td>Jump Shot</td>
+      <td>2PT Field Goal</td>
+      <td>Mid-Range</td>
+      <td>Left Side(L)</td>
+      <td>16-24 ft.</td>
+      <td>19</td>
+      <td>-179</td>
+      <td>88</td>
+      <td>0</td>
+      <td>2014-10-28</td>
+      <td>HOU</td>
+      <td>1</td>
+      <td>LAL</td>
+      <td>436</td>
+      <td>3316</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -14026,8 +14091,8 @@ Name: shot_made_flag, dtype: int64
     <span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="c1"># YOUR CODE HERE</span>
-    
-    
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;shot_made_flag&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;shot_made_flag&#39;</span><span class="p">]</span>
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
@@ -14035,12 +14100,7 @@ Name: shot_made_flag, dtype: int64
 
       </div>
     </div>
-    <div class="panel-footer">
-  <div>
-    <b>Comments:</b> <p>No response.</p>
-
-  </div>
-</div>
+    
   </div>
 </div>
 
@@ -14057,37 +14117,13 @@ Name: shot_made_flag, dtype: int64
   </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-16-8fd0ea4320aa&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>X_train<span class="ansi-blue-fg">,</span> y_train <span class="ansi-blue-fg">=</span> divide_data<span class="ansi-blue-fg">(</span>train_processed<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> X_test<span class="ansi-blue-fg">,</span> y_test <span class="ansi-blue-fg">=</span> divide_data<span class="ansi-blue-fg">(</span>test_processed<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;train_processed&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[17]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="1-4_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>1-4_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 0.5 <a href="#top">(Top)</a>
+      Score: 0.5 / 0.5 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -14107,33 +14143,6 @@ Name: shot_made_flag, dtype: int64
     </div>
     
   </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-17-2e658e66ed4b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>X_train<span class="ansi-blue-fg">.</span>shape<span class="ansi-blue-fg">,</span> X_test<span class="ansi-blue-fg">.</span>shape
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>y_train<span class="ansi-blue-fg">,</span> pd<span class="ansi-blue-fg">.</span>Series<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     <span class="ansi-green-fg">assert</span> y_train<span class="ansi-blue-fg">.</span>name <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#34;shot_made_flag&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;X_train&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
 </div>
 
 </div>
@@ -14180,8 +14189,7 @@ Name: shot_made_flag, dtype: int64
 
 <span class="c1">### IMPORT ANY</span>
 <span class="c1"># YOUR CODE HERE</span>
-
-
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">uniform</span>
 <span class="c1"># YOUR CODE ENDS HERE</span>
 
 
@@ -14190,8 +14198,28 @@ Name: shot_made_flag, dtype: int64
     <span class="n">clf</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># clf = RandomizedSearchCV(pipe, ...)</span>
 
     <span class="c1"># YOUR CODE HERE</span>
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OrdinalEncoder</span><span class="p">(),</span>
+                         <span class="n">SimpleImputer</span><span class="p">(),</span>
+                         <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+                         <span class="p">)</span>
+
+    <span class="n">dists</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;simpleimputer__strategy&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">],</span> 
+             <span class="s1">&#39;randomforestclassifier__n_estimators&#39;</span><span class="p">:</span> <span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> 
+             <span class="s1">&#39;randomforestclassifier__max_depth&#39;</span><span class="p">:</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+             <span class="s1">&#39;randomforestclassifier__max_features&#39;</span><span class="p">:</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+             <span class="s1">&#39;randomforestclassifier__min_samples_leaf&#39;</span> <span class="p">:</span> <span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+             <span class="p">}</span>
     
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> 
+                             <span class="n">param_distributions</span><span class="o">=</span><span class="n">dists</span><span class="p">,</span> 
+                             <span class="n">n_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                             <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                             <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span>
+                             <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+                             <span class="p">)</span>
     
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="n">clf</span>
@@ -14199,12 +14227,7 @@ Name: shot_made_flag, dtype: int64
 
       </div>
     </div>
-    <div class="panel-footer">
-  <div>
-    <b>Comments:</b> <p>No response.</p>
-
-  </div>
-</div>
+    
   </div>
 </div>
 
@@ -14229,14 +14252,9 @@ Name: shot_made_flag, dtype: int64
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-19-d1691a8fa38b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>clf <span class="ansi-blue-fg">=</span> fit_trees<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">,</span> y_train<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;X_train&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Fitting 3 folds for each of 5 candidates, totalling 15 fits
+</pre>
 </div>
 </div>
 
@@ -14249,7 +14267,7 @@ Name: shot_made_flag, dtype: int64
 <div class="prompt input_prompt">In&nbsp;[20]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="2-1_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>2-1_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 1.0 <a href="#top">(Top)</a>
+      Score: 1.0 / 1.0 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -14299,18 +14317,10 @@ Name: shot_made_flag, dtype: int64
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-20-ada398362bfb&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Best CV F1&#34;</span><span class="ansi-blue-fg">,</span> clf<span class="ansi-blue-fg">.</span>best_score_<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Best CV params&#34;</span><span class="ansi-blue-fg">,</span> clf<span class="ansi-blue-fg">.</span>best_params_<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">import</span> sklearn
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> sklearn<span class="ansi-blue-fg">.</span>ensemble <span class="ansi-green-fg">import</span> RandomForestClassifier
-
-<span class="ansi-red-fg">NameError</span>: name &#39;clf&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Best CV F1 0.5790465843692993
+Best CV params {&#39;randomforestclassifier__max_depth&#39;: 4, &#39;randomforestclassifier__max_features&#39;: 0.4263610805505099, &#39;randomforestclassifier__min_samples_leaf&#39;: 6, &#39;randomforestclassifier__n_estimators&#39;: 328, &#39;simpleimputer__strategy&#39;: &#39;median&#39;}
+</pre>
 </div>
 </div>
 
@@ -14342,8 +14352,8 @@ Name: shot_made_flag, dtype: int64
     <span class="n">feature_importances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">))</span>
 
     <span class="c1"># YOUR CODE HERE</span>
-    
-    
+    <span class="n">rf</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;randomforestclassifier&#39;</span><span class="p">]</span>
+    <span class="n">feature_importances</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span>
     <span class="c1"># YOUR CODE ENDS HERE</span>
 
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span>
@@ -14353,12 +14363,7 @@ Name: shot_made_flag, dtype: int64
 
       </div>
     </div>
-    <div class="panel-footer">
-  <div>
-    <b>Comments:</b> <p>No response.</p>
-
-  </div>
-</div>
+    
   </div>
 </div>
 
@@ -14376,38 +14381,13 @@ Name: shot_made_flag, dtype: int64
   </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-22-6cd2f98c4314&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> feature_importances = get_feature_importances(
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg">     </span>clf<span class="ansi-blue-fg">.</span>best_estimator_<span class="ansi-blue-fg">,</span> list<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> )
-
-<span class="ansi-red-fg">NameError</span>: name &#39;clf&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[23]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="2-2_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>2-2_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 0.5 <a href="#top">(Top)</a>
+      Score: 0.5 / 0.5 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -14447,18 +14427,22 @@ Name: shot_made_flag, dtype: int64
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-23-c5100ec2fe59&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">for</span> name<span class="ansi-blue-fg">,</span> importance <span class="ansi-green-fg">in</span> feature_importances<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#34;{name}: {importance:.4f}&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> sklearn<span class="ansi-blue-fg">.</span>ensemble <span class="ansi-green-fg">import</span> RandomForestClassifier
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> sklearn<span class="ansi-blue-fg">.</span>tree <span class="ansi-green-fg">import</span> DecisionTreeClassifier
-
-<span class="ansi-red-fg">NameError</span>: name &#39;feature_importances&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>action_type: 0.6670
+shot_distance: 0.1467
+loc_y: 0.0547
+shot_zone_basic: 0.0302
+Seconds_remaining_in_the_period: 0.0227
+shot_zone_range: 0.0175
+shot_zone_area: 0.0106
+game_date: 0.0091
+shot_type: 0.0085
+loc_x: 0.0070
+vtm: 0.0068
+Opponent: 0.0066
+Seconds_remaining_in_the_game: 0.0063
+Homecourt_Advantage: 0.0063
+</pre>
 </div>
 </div>
 
@@ -14518,36 +14502,13 @@ Name: shot_made_flag, dtype: int64
   </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-25-17db948699f2&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>test_accuracy<span class="ansi-blue-fg">,</span> test_f1 <span class="ansi-blue-fg">=</span> calculate_score<span class="ansi-blue-fg">(</span>clf<span class="ansi-blue-fg">.</span>best_estimator_<span class="ansi-blue-fg">,</span> X_test<span class="ansi-blue-fg">,</span> y_test<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;clf&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[26]:</div><div class="panel panel-primary nbgrader_cell">
     <a name="2-3_test"></a><div class="panel-heading"><span class="nbgrader-label">Grade cell: <code>2-3_test</code></span>
   <span class="pull-right">
-      Score: 0.0 / 1.0 <a href="#top">(Top)</a>
+      Score: 1.0 / 1.0 <a href="#top">(Top)</a>
   </span></div>
     <div class="panel-body">
       <div class="input_area">
@@ -14574,18 +14535,10 @@ Name: shot_made_flag, dtype: int64
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-26-e23f411cd015&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;test accuracy: &#34;</span><span class="ansi-blue-fg">,</span> test_accuracy<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;test F1:&#34;</span><span class="ansi-blue-fg">,</span> test_f1<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">assert</span> test_accuracy <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.6</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;test_accuracy &lt;= 0.6&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">assert</span> test_f1 <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.5</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;test_f1 &lt;= 0.5&#34;</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;test_accuracy&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>test accuracy:  0.6736035049288062
+test F1: 0.537984496124031
+</pre>
 </div>
 </div>
 
@@ -14626,18 +14579,30 @@ Name: shot_made_flag, dtype: int64
     <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>test accuracy &gt; 0.68?:  False
+test F1 &gt; 0.54?: False
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
 <span class="ansi-green-fg">&lt;ipython-input-27-6affa49cdb9a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;test accuracy &gt; 0.68?: &#34;</span><span class="ansi-blue-fg">,</span> test_accuracy <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.68</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;test F1 &gt; 0.54?:&#34;</span><span class="ansi-blue-fg">,</span> test_f1 <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.54</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">      3</span> 
 <span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-red-fg">### BEGIN HIDDEN TESTS</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">assert</span> test_accuracy <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.68</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;test_accuracy &lt;= 0.68&#34;</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">assert</span> test_accuracy <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.68</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;test_accuracy &lt;= 0.68&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-green-fg">assert</span> test_f1 <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">0.54</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;test_f1 &lt;= 0.54&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span> <span class="ansi-red-fg">### END HIDDEN TESTS</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;test_accuracy&#39; is not defined</pre>
+<span class="ansi-red-fg">AssertionError</span>: test_accuracy &lt;= 0.68</pre>
 </div>
 </div>
 
