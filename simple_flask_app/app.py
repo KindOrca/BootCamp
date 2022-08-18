@@ -5,7 +5,9 @@ Simple Flask App 입니다.
 어떻게 동작을 하는지 살펴보세요!
 """
 import os
-from flask import Flask
+from typing import Dict
+from flask import Flask, render_template
+import csv
 
 # 추가로 필요한 패키지들이 있는 경우 가져와 사용합니다.
 
@@ -18,14 +20,15 @@ app.config['USERS_CSV_FILE'] = os.path.join(os.path.dirname(__file__), 'users.cs
 
 # 플라스크 애플리케이션의 라우팅 설정입니다.
 # 서버 주소 + '/' 로 들어가면 아래 함수가 실행이 됩니다.
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     """
     index 함수에서는 'simple_flask_app/templates' 폴더에 있는 'index.html'
     파일을 렌더링 해줘야 합니다!
     """
-    return 'OK', 200
+    return render_template('index.html')
 
+@app.route('/users')
 def users():
     """
     users 함수에서는 사용자가 '서버 주소 + /users' 로 접속하게 되면
@@ -36,10 +39,17 @@ def users():
         }
 
     NOTE: CSV 파일을 읽어온 뒤에 가장 첫 줄인 'username' 은 리스트에 담지 않습니다!  """
+    f = open('simple_flask_app/users.csv','r')
+    rdr = csv.reader(f)
+    dic = dict()
+    dic['users'] = []
+    for item in rdr:
+        dic['users'].append(item[0])
+    dic['users'].pop(0)
+    return dic
 
-    return 'OK', 200
-
-
+@app.route('/users/', defaults={'user_order':1})
+@app.route('/users/<user_order>')
 def display_user(user_order):
     """
     display_user 함수에서는 사용자가 '서버 주소 + /users/{ 유저 아이디 }' 로
@@ -63,7 +73,13 @@ def display_user(user_order):
     -   예를 들어 사용자가 '/users/2' 에 접속하면 '2' 번째, 즉 두 번째 유저인
         'patrick' 문자열을 돌려줍니다.
     """
-    return 'OK', 200
+    f = open('simple_flask_app/users.csv','r')
+    rdr = csv.reader(f)
+    dic = dict()
+    dic['users'] = []
+    for item in rdr:
+        dic['users'].append(item[0])
+    return '%s' % dic['users'][int(user_order)]
     
 
 if __name__ == "__main__":
