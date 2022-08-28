@@ -1,6 +1,6 @@
 from xmlrpc.client import boolean
 from flask import Flask, request, render_template
-from form import PatientInfo
+from Webser.form import PatientInfo
 import pickle
 
 def create_app():
