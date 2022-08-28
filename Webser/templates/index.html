@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<form method="post" class="tedori">
+    {{ form.csrf_token }}
+    <h1> Patient Information </h1><br />
+    <div class="row mb-3">
+        <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
+        {{ form.Name(class="col-sm-10 form-control",style="width:160px") }}
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputAge3" class="col-sm-2 col-form-label">Age</label>
+        {{ form.Age(class="col-sm-10 form-control",style="width:160px") }}
+    </div>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.Gender(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Gender1">
+                    Female
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.Gender(class="form-check-input form-check-inline", type="radio",value=1) }}
+                <label class="form-check-label" for="Gender2">
+                    Male
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Scholarship</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.Scholarship(class="form-check-input form-check-inline", type="radio",value=1) }}
+                <label class="form-check-label" for="Scholarship1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.Scholarship(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Scholarship2">
+                    No
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Hipertension</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.Hipertension(class="form-check-input form-check-inline", type="radio",value=1) }}
+                <label class="form-check-label" for="Hipertension1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.Hipertension(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Hipertension2">
+                    No
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Diabetes</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.Diabetes(class="form-check-input form-check-inline", type="radio",value=1) }}
+                <label class="form-check-label" for="Diabetes1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.Diabetes(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Diabetes2">
+                    No
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Alcholism</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.Alcholism(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Alcholism1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.Alcholism(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Alcholism2">
+                    No
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Handcap</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.Handcap(class="form-check-input form-check-inline", type="radio",value=1) }}
+                <label class="form-check-label" for="Handcap1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.Handcap(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="Handcap2">
+                    No
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">SMS_received</legend>
+        <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                {{ form.SMS_received(class="form-check-input form-check-inline", type="radio",value=1) }}
+                <label class="form-check-label" for="SMS_received1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                {{ form.SMS_received(class="form-check-input form-check-inline", type="radio",value=0) }}
+                <label class="form-check-label" for="SMS_received2">
+                    No
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    {{ form.Submit(class="btn btn-secondary") }}
+</form>
+{% endblock %}
