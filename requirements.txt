@@ -40,3 +40,4 @@ Werkzeug==2.2.2
 wincertstore==0.2
 wsproto==1.1.0
 WTForms==3.0.1
+pywin32==302
