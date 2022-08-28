@@ -33,4 +33,5 @@ def create_app():
             else:
                 return render_template('result2.html', Name=Name)
         return render_template('index.html', form=form)
-
+    
+    return app
