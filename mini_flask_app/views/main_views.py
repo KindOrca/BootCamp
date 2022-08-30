@@ -23,4 +23,10 @@ def index():
       - `GET` 요청이 들어오면 `templates/index.html` 파일을 렌더 해야 합니다.
 
     """
-    return 'OK', 200
+    user_list=[]
+    with open(CSV_FILEPATH) as file:
+      users = csv.reader(file)
+      next(users)
+      for i in users:
+        user_list.append(i)
+    return render_template('index.html', user_list=user_list), 200

@@ -1,3 +1,4 @@
+from collections import UserList
 import os
 import csv
 import json
@@ -31,8 +32,17 @@ def get_user():
         - 리턴 값: 'users.csv' 파일에 저장된 유저의 `id` 를 문자열로 변경한 값
         - HTTP 상태 코드: `200`
     """
+    username = request.args.get('username',default=None)
 
-    return 'OK', 200
+    users = make_dic()
+
+    if username == None:
+      return "No username given", 400
+    if username not in users.values():
+      return f"User '{ username }' doesn't exist", 404
+    else:
+      id = [i for i in users.keys() if users[i] == username][0]
+      return str(id), 200
 
 
 @user_bp.route('/user', methods=['PATCH'])
@@ -60,7 +70,31 @@ def update_user():
         - 리턴 값: "OK"
         - HTTP 상태 코드: `200`
     """
+    username = request.args.get('username',default=None)
+    new_username = request.args.get('new_username',default=None)
+
+    users = make_dic()
+
+    if username == None or new_username == None:
+      return "No username/new_username given", 400
+    if username not in users.values():
+      return f"User '{ username }' doesn't exist", 400
+    if new_username in users.values():
+      return f"Username '{ new_username }' is in use", 400
+    
+    idx = [i for i in users.keys() if users[i] == username][0]
+    users[idx] = new_username
+
+    with open(CSV_FILEPATH, 'w') as file:
+      fieldnames = ['username', 'id']
+      wtr = csv.DictWriter(file, fieldnames=fieldnames)
+      wtr.writeheader()
+      for id, name in users.items():
+        wtr.writerow({'id':id, 'username':name})
+
     return 'OK', 200
+
+
 
     
 
@@ -92,7 +126,27 @@ def create_user():
         - 리턴 값: "Created user '{ username }'"
         - HTTP 상태 코드: `200`
     """
-    return 'OK', 200
+    # data = request.get_json()
+    # users = make_dic()
+    # if 'username' not in data:
+    #   return "No username given", 400
+    try:
+      data = request.get_json()
+      username = data.get('username')
+    except:
+      return "No username given", 400
+    
+    users = make_dic()
+
+    if username in users.values():
+      return f"User '{ username }' already exists", 400
+
+    with open(CSV_FILEPATH, 'a') as file:
+      fieldnames = ['id','username']
+      wtr = csv.DictWriter(file, fieldnames=fieldnames)
+      wtr.writerow({'id':len(users) + 1, 'username':username})
+
+    return f"Created user '{ username }'", 200
 
 @user_bp.route('/user', methods=['DELETE'])
 def delete_user():
@@ -116,4 +170,30 @@ def delete_user():
         - 리턴 값: "OK"
         - HTTP 상태 코드: `200`
     """
+    username = request.args.get('username', default=None)
+    users = make_dic()
+
+    if username == None:
+      return "No username given", 400
+    if username not in users.values():
+      return f"User '{ username }' doesn't exist", 404
+    
+    id = [i for i in users.keys() if users[i] == username][0]
+    del users[id]
+    
+    with open(CSV_FILEPATH,'w') as file:
+      fieldnames = ['id','username']
+      wtr = csv.DictWriter(file, fieldnames=fieldnames)
+      wtr.writeheader()
+      for id, username in users.items():
+        wtr.writerow({'id':id, 'username':username})
+
     return 'OK', 200
+
+def make_dic():
+  users = dict()
+  with open(CSV_FILEPATH, 'r') as file:
+    rdr = csv.DictReader(file)
+    for i in rdr:
+      users[i['id']] = i['username']
+  return users

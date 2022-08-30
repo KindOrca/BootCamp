@@ -46,6 +46,9 @@
 
         그렇다면 이 페이지를 접속하면 'patrick' 과 '1' 이 보여야 합니다.
       -->
+      {% for i in user_list %}
+        {{ i.0 }} {{i.1}} <br/>
+      {% endfor%}
     </section>
     {% endif %}
   </body>
