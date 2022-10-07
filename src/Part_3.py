@@ -28,5 +28,12 @@ Bare Minimum Requirements
 """
 
 def part3(s):
-    ##### 소스코드를 작성해주세요 #####
-    pass # 지워주세요
+    from functools import reduce
+    s_ = list(set(s.split()))
+    s_sorted = sorted(s_)
+    ans = reduce(lambda a,b: a+' '+b, s_sorted)
+    return ans
+
+
+a = 'A D U X b c y z'
+print(part3(a))

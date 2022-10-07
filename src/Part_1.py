@@ -19,5 +19,10 @@ Bare Minimum Requirements
 """
 
 def part1():
-    ##### 소스코드를 작성해주세요 #####
-    pass # 지워주세요
+    ans = []
+    l,a = 1,1
+    while a < 100:
+        a = l*l
+        ans.append(a)
+        l+=1
+    return ans
