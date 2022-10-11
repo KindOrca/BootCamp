@@ -12,4 +12,15 @@ Advanced Requirements
 """
 
 def part3(N):
-    pass
+    idx = [True] * N
+    sqrt = int(N ** 1/2)
+    for i in range(2, sqrt+1):
+        if idx[i]:
+            for j in range(i+i, N, i):
+                idx[j] = False
+    
+    prime = [i for i in range(2, N) if idx[i]]
+
+    if len(prime) > 0:
+        return len(prime)
+    raise ValueError

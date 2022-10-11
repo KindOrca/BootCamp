@@ -30,10 +30,10 @@ def rock_sciss_paper():
     quit_message = "********** 게임을 종료합니다. **********"
     # 딕셔너리 모음
     choice_options = {
-        '1': "가위",
-        '2': "바위",
-        '3': "보",
-        '9': "게임종료"
+        1: "가위",
+        2: "바위",
+        3: "보",
+        9: "게임종료"
     }
     score = {
         "사용자승": 0,
@@ -45,29 +45,72 @@ def rock_sciss_paper():
         print(welcome_message)
 
 
-    def get_user_choice(pass):
-        pass
+    def get_user_choice():
+        choices = ['1','2','3','9','가위','바위','보','게임종료']
+        while True:
+            user = input()
+            if user in choices:
+                break
+        if user.isnumeric() and user != '9':
+            return choice_options[int(user)]
+        return user
 
 
-    def quit_game(pass):
+    def quit_game(a,b,c):
+        print('사용자승 :', a)
+        print('무 승 부 :', b)
+        print('사용자패 :', c)
         print(quit_message)
 
 
-    def compare_choices_and_get_result(pass):
-        pass
+    def compare_choices_and_get_result(user, comp):
+        if user == comp:
+            return 0
+        if user == '가위':
+            if comp == '바위':
+                return -1
+            else:
+                return 1
+        
+        if user == '바위':
+            if comp == '보':
+                return -1
+            else:
+                return 1
+        
+        if user == '보':
+            if comp == '가위':
+                return -1
+            else:
+                return 1
 
 
-    def display_result_message_and_update_score(pass):
-        pass
+    def display_result_message_and_update_score(res):
+        if res == 0:
+            score["무승부"] += 1
+            print(tie_message)
+        elif res == 1:
+            score['사용자승'] += 1
+            print(win_message)
+        else:
+            score['사용자패'] += 1
+            print(loss_message)
     
 
     # 게임 시작
     show_welcome_message()
-    while user_choice != "게임종료":
-        pass
+    import random
+    user_choice = get_user_choice()
+    while user_choice != "게임종료" and user_choice != '9':
+        computer_choice = choice_options[random.randint(1, 3)]
+        result = compare_choices_and_get_result(user_choice, computer_choice)
+        display_result_message_and_update_score(result)
+        user_choice = get_user_choice()
+
 
     print('')
-    quit_game(pass)
+    quit_game(score["사용자승"], score["무승부"], score["사용자패"])
+    return
 
 
 if __name__ == "__main__":

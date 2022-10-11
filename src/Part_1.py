@@ -17,5 +17,4 @@ Bare Minimum Requirements
 """
 
 def part1():
-    ##### 소스코드를 작성해주세요 #####
-    pass # 지워주세요
+    return [n for n in range(1,101) if n%5==0 and n%7==0]
