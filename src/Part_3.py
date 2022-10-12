@@ -61,45 +61,45 @@ class Book:
         self.librarian = librarian
 
 
-class Librarian:
-    def __init__():
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+class Librarian(Person):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+        self.__booklist = []
 
-    def add_book():   #새책을 받거나, 반납받는 함수
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+    def add_book(self, book):   #새책을 받거나, 반납받는 함수
+        self.__booklist.append(book)
 
-    def remove_book():    #책을 빌려주는 함수
+    def remove_book(self, book):    #책을 빌려주는 함수
         """
         리스트에 해당하는 책이 없을때는 False를,
         있을 경우 삭제 후에 True를 리턴해주세요~!
         """
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+        if book in self.__booklist:
+            self.__booklist.remove(book)
+            return True
+        return False
 
     def get_book_list(self):    #관리중인 책 목록을 반환하는 함수
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+        return self.__booklist
 
 
-class User:
-    def __init__():
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+class User(Person):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+        self.__booklist = []
 
-    def borrow_book(): #책을 대출하는 함수
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+    def borrow_book(self, book): #책을 대출하는 함수
+        self.__booklist.append(book)
 
-    def return_book(): #책을 반납하는 함수
+    def return_book(self, book): #책을 반납하는 함수
         """
         리스트에 해당하는 책이 없을때는 False를,
         있을 경우 삭제 후에 True를 리턴해주세요~!
         """
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+        if book in self.__booklist:
+            self.__booklist.remove(book)
+            return True
+        return False
 
-    def get_borrowed_list():    #빌린 책 목록을 반환하는 함수
-        ##### 소스코드를 작성해주세요 #####
-        pass # 문제를 푸실 때 pass를 지워주세요
+    def get_borrowed_list(self):    #빌린 책 목록을 반환하는 함수
+        return self.__booklist

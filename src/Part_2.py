@@ -37,7 +37,8 @@ class Laptop(Computer):
             (hint)
             괄호가 빠져있지 않은지 확인해보세요~!
         """
-        pass
+        super().__init__(cpu, ram)
+        self.battery = battery
 
 
 
@@ -48,7 +49,9 @@ def oop_explain():
     """
 
     answer = """
-    
+    재사용이 가능하도록 설계 및 프로그래밍
+    속성과 기능을 object라는 최소단위로 분리
+    캡슐화, 상속과 포함, 추상화, 다형성 등 OOP에 대한 다양한 개념들이 있다.
     """
 
     return answer
