@@ -37,8 +37,8 @@ def part2_q1(li):
     
 
 def part2_q1_answer():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = QUADRATIC
+    reason = "LINEAR는 QUADRATIC에 영향을 주지 못한다"
 
     return (time_complexity, reason)
 
@@ -49,8 +49,8 @@ def part2_q2(li):
 
 
 def part2_q2_answer():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = CONSTANT
+    reason = "시작하자마자 끝내서"
 
     return (time_complexity, reason)
 
@@ -65,7 +65,7 @@ def part2_q3(num):
 
 
 def part2_q3_answer():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = LOGARITHMIC
+    reason = "입력값 따라 출력값의 증가율이 동일하지 않기 때문에"
 
     return (time_complexity, reason)

@@ -40,7 +40,24 @@ Advanced Requirements
 """
 
 def part3(input_list, value_to_search):
-    pass
+    ans = []
+    for i, row in enumerate(input_list):
+        lo, hi = 0, len(row)-1
+        idx = binarySearch(row, value_to_search, lo, hi)
+        if idx: 
+            ans.append((i, idx))
+    return ans
+
+def binarySearch(array, value, low, high):
+    if low > high:
+        return False
+    mid = (low+high) // 2
+    if array[mid] > value:
+        return binarySearch(array, value, low, mid-1)
+    elif array[mid] < value:
+        return binarySearch(array, value, mid+1, high)
+    else:
+        return mid
 
 
 """
@@ -59,8 +76,17 @@ EXPONENTIAL = 'O(c^n)'
 
 
 def part3_timecomplexity():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = LINEARITHMIC
+    reason = "이진탐색은 LOGARITHMIC의 시간복잡도를 갖는다. LINEAR 안에 LOGARITHMIC가 있으므로 LINEARITHMIC가 된다. (N * logN)"
 
     return (time_complexity, reason)
     
+# input_list = [
+#     [1,2,3,4,5,6,7,8],
+#     [1,2,3,4,5,6,7,8,9,10],
+#     [1,2,4,8,16,32],
+#     [1,2,3,4,5,6]
+# ]
+# value_to_search = 8
+
+# print(part3(input_list, value_to_search))

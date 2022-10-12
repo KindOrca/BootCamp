@@ -30,8 +30,8 @@ def part1_q1():
 
 
 def part1_q1_answer():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = CONSTANT
+    reason = "입력값에 영향을 받지 않음"
 
     return (time_complexity, reason)
 
@@ -44,8 +44,8 @@ def part1_q2(li):
 
 
 def part1_q2_answer():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = LINEAR
+    reason = "입력값이 증가하면 동일한 속도로 실행속도가 증가"
 
     return (time_complexity, reason)
 
@@ -60,7 +60,7 @@ def part1_q3(li):
 
 
 def part1_q3_answer():
-    time_complexity = ANSWER
-    reason = "이유를 작성해주세요"
+    time_complexity = QUADRATIC
+    reason = "루프문 2개 -> 입력값이 증가할수록 제곱으로 늘어남"
 
     return (time_complexity, reason)
