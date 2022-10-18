@@ -43,4 +43,6 @@ def factor(num1, num2):
             출력값:
                 20
     """
-    pass # 문제푸실 때 pass를 지워주세요 
+    if num2 == 0: 
+        return num1
+    return factor(num2, num1 % num2)
