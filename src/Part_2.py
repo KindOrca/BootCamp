@@ -41,11 +41,14 @@ def print_to_zero_pos(n, result_list):
 			print_to_zero_pos(pos, result_list)
 			print(result_list) # [5,4,3,2,1,0]
 	"""
-	pass #### 문제 풀 때 pass를 지워주세요 #####
+	if n < 0: return
+	result_list.append(n)
+	print_to_zero_pos(n-1, result_list)
+
 
 
 @counter
-def print_to_zero_neg(n, result_list):
+def print_to_zero_neg(n, result_list): 
 	"""
 	# 문제 2.
 		-1 이하의 음수를 입력받아 입력받은 수부터 0까지 구하는 함수를 작성해주세요.
@@ -59,5 +62,7 @@ def print_to_zero_neg(n, result_list):
 			print_to_zero_neg(neg, result_list_neg)
 			print(result_list_neg) #[-3,-2,-1,0]
 	"""
-	pass #### 문제 풀 때 pass를 지워주세요 #####
+	if n > 0: return
+	result_list.append(n)
+	print_to_zero_neg(n+1, result_list)
  

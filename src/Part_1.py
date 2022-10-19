@@ -23,7 +23,13 @@ def bubble_sort(li):
             bubble_sort(li)
             print(li) # [17, 26, 31, 54, 77, 93]
     """
-    pass #### 문제 풀 때 pass를 지워주세요 #####
+    check = False
+    for end in range(len(li)-1,0,-1):
+        for i in range(end):
+            if li[i] > li[i+1]:
+                li[i], li[i+1] = li[i+1], li[i]
+                check = True
+        if not check: break
 
 
 def insertion_sort(li):
@@ -38,7 +44,12 @@ def insertion_sort(li):
             insertion_sort(li)
             print(li) # [17, 26, 31, 54, 77, 93]
     """
-    pass #### 문제 풀 때 pass를 지워주세요 #####
+    for end in range(1, len(li)):
+        for i in range(end, 0, -1):
+            if li[i-1] > li[i]:
+                li[i-1], li[i] = li[i], li[i-1]
+            else: break
+
 
 
 def selection_sort(li):
@@ -53,4 +64,9 @@ def selection_sort(li):
             selection_sort(li)
             print(li) # [17, 26, 31, 54, 77, 93]
     """
-    pass #### 문제 풀 때 pass를 지워주세요 #####
+    for i in range(len(li)-1):
+        min_idx = i
+        for j in range(i+1, len(li)):
+            if li[j] < li[min_idx]:
+                min_idx = j
+        li[i], li[min_idx] = li[min_idx], li[i]

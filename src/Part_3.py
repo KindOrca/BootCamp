@@ -48,4 +48,16 @@ class counter:
 
 @counter 
 def print_to_zero_pos_neg(nums, dir):
-    pass #### 문제 풀 때 pass를 지워주세요 #####
+    num = nums.split(',')
+    n = int(num[0])
+
+    if len(num) == 1:
+        if n > 0:
+            dir[str(n)] = [str(x) for x in range(n, -1, -1)]
+        else:
+            dir[str(n)] = [str(x) for x in range(n, 1)]
+    else:
+        print_to_zero_pos_neg(str(n), dir)
+        nums = ','.join(num[1:])
+        print_to_zero_pos_neg(nums, dir)
+    
