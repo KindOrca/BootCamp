@@ -40,8 +40,18 @@ def merge(left, right):
 
         파이썬에서 제공되는 sort와 같은 내장함수를 사용하면 안됩니다.
     """
-    pass
-
+    temp = []
+    while left and right:
+        if left[0] < right[0]:
+            temp.append(left.pop(0))
+        else:
+            temp.append(right.pop(0))
+    if left:
+        temp.extend(left)
+    else:
+        temp.extend(right)
+    return temp
+    
 
 @counter # 삭제하거나 변경하지 마세요!
 def merge_sort(li):
@@ -54,4 +64,8 @@ def merge_sort(li):
         작성되어있는 merge_sort함수를 재귀함수로 사용해주세요.
         merge_sort함수 내부에 새로운 재귀함수로 구현하시면 안됩니다. 
     """
-    pass
+    if len(li) <= 1: return li
+    mid = len(li)//2
+    left = merge_sort(li[:mid])
+    right = merge_sort(li[mid:])
+    return merge(left, right)

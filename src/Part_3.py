@@ -64,4 +64,15 @@ Advanced Requirements
 """
 
 def part3(li):
-    pass
+    mid = (len(li)//2)
+    if len(li) <= 1: return str(li[0][0])  
+    else:
+        li_a = [li[i][:mid] for i in range(mid)]
+        li_b = [li[i][mid:] for i in range(mid)]
+        li_c = [li[i][:mid] for i in range(mid, len(li))]
+        li_d = [li[i][mid:] for i in range(mid, len(li))]
+        a, b, c, d = part3(li_a), part3(li_b), part3(li_c), part3(li_d)
+        if a==b==c==d:
+            return a
+        else:
+            return '('+a+b+c+d+')'
