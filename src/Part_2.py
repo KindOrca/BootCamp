@@ -27,7 +27,8 @@ class Node:
             반환값은 없습니다.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        self.value = value
+        self.next = next
 
 
 class linked_list:
@@ -42,7 +43,7 @@ class linked_list:
             반환값은 없습니다.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        self.head = Node(value)
 
 
     def add_node(self, value):
@@ -56,7 +57,14 @@ class linked_list:
             반환값은 없습니다.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+        else:
+            node = self.head
+            while node.next:
+                node = node.next
+            node.next = new_node
 
 
     def del_node(self,value):
@@ -71,7 +79,22 @@ class linked_list:
             만약 LinkedList에 값이 없다면 None 반환
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        if self.head is None:
+            return None
+        elif self.head.value == value:
+            temp = self.head.value
+            self.head = self.head.next
+            return temp
+        else:
+            node = self.head
+            while node.next != None:
+                if node.next.value == value:
+                    temp = node.next.value
+                    node.next = node.next.next
+                    return temp
+                else:
+                    node = node.next
+        return None
 
 
     def ord_desc(self):
@@ -86,7 +109,12 @@ class linked_list:
             리스트 형태로 반환해주세요.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        node = self.head
+        data = []
+        while node != None:
+            data.append(node.value)
+            node = node.next
+        return data
 
 
     def search_node(self,value):
@@ -100,5 +128,9 @@ class linked_list:
             연결리스트에서 value를 가진 노드를 찾아 노드를 반환
             아래 pass를 지워주시고 코드를 작성해주시면 됩니다.
         """
-        pass
+        node = self.head
+        while node != None:
+            if node.value == value:
+                return node
+            node = node.next
 

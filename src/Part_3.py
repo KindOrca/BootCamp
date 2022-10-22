@@ -43,7 +43,15 @@ class Deque:
             반환값은 없습니다.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        if self.top is None:
+            self.top = Node(item)
+            self.bottom = self.top
+        else:
+            node = self.bottom
+            while node.next:
+                node = node.next
+            node.next = Node(item)
+            self.bottom = node.next
 
 
     def appendleft(self, item):
@@ -57,7 +65,9 @@ class Deque:
             반환값은 없습니다.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        temp = self.top
+        self.top = Node(item)
+        self.top.next = temp
 
 
     def pop(self):
@@ -72,7 +82,22 @@ class Deque:
             만약 삭제한 값이 없다면 None을 반환해주세요.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        if self.top is None:
+            return None
+        else:
+            if self.top == self.bottom:
+                temp = self.top.value
+                self.top = None
+                self.bottom = None
+                return temp
+            else:
+                node = self.top
+                while node.next != self.bottom:
+                    node = node.next
+                temp = node.next.value
+                node.next = None
+                self.bottom = node
+                return temp
 
 
     def popleft(self):
@@ -87,7 +112,13 @@ class Deque:
             만약 삭제한 값이 없다면 None을 반환해주세요.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        node = self.top
+        if node is None:
+            return None
+        else:
+            temp = node.value
+            self.top = node.next
+            return temp
 
 
     def ord_desc(self):
@@ -101,4 +132,12 @@ class Deque:
             Deque내부에 있는 값을 리스트 형태로 반환해주세요.
         아래 pass를 지워주시고 코드를 작성해주시면 됩니다. 
         """
-        pass
+        data = []
+        node = self.top
+        if node == None:
+            return None
+        else:
+            while node != None:
+                data.append(node.value)
+                node = node.next
+        return data
