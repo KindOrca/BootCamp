@@ -18,6 +18,29 @@ Advanced Requirements
                 self.left = None
                 self.right = None
 """
-
 def in_order_traversal(root_node):
-    pass
+    seq = []
+    stack = Stack()
+    node = root_node
+    while stack.IsEmpty() or node:
+        if node:
+            stack.push(node)
+            node = node.left
+        else:
+            node = stack.pop()
+            seq.append(node.data)
+            node = node.right
+    return seq
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, node):
+        self.stack.append(node)
+    
+    def pop(self):
+        return self.stack.pop(-1)
+    
+    def IsEmpty(self):
+        if self.stack: return True
+        return False
