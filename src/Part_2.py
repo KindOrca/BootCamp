@@ -23,13 +23,22 @@ Advanced Requirements
         char_combi('24')
     출력 
         ['qz', 'qx', 'qc', 'wz', 'wx', 'wc', 'ez', 'ex', 'ec']
-"""
+"""                                                            
 
 def char_combi(num):
-    def dfs():
-        
-        ##### 코드를 작성해주세요 #####
-
+    def dfs(node, word):
+        if node == len(nums): return
+        idx = nums[node]
+        for letter in test_dict[idx]:
+            word = word + letter 
+            dfs(node+1, word)
+            if node+1 == len(nums):
+                test_result.append(word)
+            word = word[:-1]
+    nums = []
+    for i in num:
+        nums.append(i)
     test_dict = {"2": "qwe", "3": "asd", "4": "zxc"}
-
+    test_result = []
+    dfs(0, "")
     return test_result
