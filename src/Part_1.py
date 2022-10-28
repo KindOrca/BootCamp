@@ -28,7 +28,10 @@ def memo_fib(input_value, save_memo):
         출력값:
             3524578
     """
-    pass
+    if input_value < 2: return input_value
+    if input_value in save_memo: return save_memo[input_value]
+    save_memo[input_value] = memo_fib(input_value-1, save_memo) + memo_fib(input_value - 2, save_memo)
+    return save_memo[input_value]
 
 
 @counter
@@ -43,7 +46,7 @@ def tabul_fib(input_value):
         출력값:
             3524578
     """
-    pass
-
-
-
+    tabul = [1,1]
+    for _ in range(input_value-2):
+        tabul.append(tabul[-2] + tabul[-1])
+    return tabul[input_value - 1]

@@ -29,10 +29,75 @@ Advanced Requirements
 """
 
 def word_logic(num):
-    ##### 소스코드 작성 #####
+    word_box = {
+        0:'zero',
+        1:'one',
+        2:'two',
+        3:'three',
+        4:'four',
+        5:'five',
+        6:'six',
+        7:'seven',
+        8:'eight',
+        9:'nine',
+        10:'ten',
+        11:'eleven',
+        12:'twelve',
+        13:'thirteen',
+        14:'fourteen',
+        15:'fifteen',
+        16:'sixteen',
+        17:'seventeen',
+        18:'eighteen',
+        19:'nineteen',
+        20:'twenty',
+        30:'thirty',
+        40:'forty',
+        50:'fifty',
+        60:'sixty',
+        70:'seventy',
+        80:'eighty',
+        90:'ninety',
+        100:'hundred',
+        1000:'thousand',
+        1000000:'million'
+    }
+    if num < 100 and num > 20:
+        A = (num // 10) * 10
+        B = num % 10
+        word_result = word_box[A]
+        if B != 0:
+            word_result += '-' + word_box[B]
+    elif num < 1000 and num > 100:
+        A = num // 100
+        B = num % 100
+        word_result = word_box[A] + ' ' + word_box[100]
+        if B != 0:
+            word_result += ' and ' + word_logic(B)
+    # elif num > 1000:
+    #     A = num // 1000
+    #     B = num % 1000
+    #     word_result = word_box[A] + ' '  + word_box[1000]
+    #     if B != 0:
+    #         word_result += ', ' + word_logic(B)
+    else:
+        word_result = word_box[num]
     return word_result
-    
 
 def number_logic(num):
-    ##### 소스코드 작성 #####
-
+    if num == 0: return 'Zero.'
+    ret = ''
+    number_list = [1000000,1000]
+    for a in number_list:
+        A = num // a
+        if A > 0:
+            ret += word_logic(A) + ' ' + word_logic(a)
+            num %= a
+            if a != 1:
+                ret += ', '
+    if num != 0:
+        ret += word_logic(num)
+    else:
+        ret = ret[:-1]
+    ret += '.'
+    return ret.capitalize()
