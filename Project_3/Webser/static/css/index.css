@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', 'sans-serif';
+}
+
+body {
+    margin: 0;
+    background-color: #e0e7e5;
+}
+
+/* .tedori {
+    width: 500px;
+    height: 750px;
+    background-color: aliceblue;
+    border: 1px solid red;
+} */
